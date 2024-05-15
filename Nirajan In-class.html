@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><span style="color: blue;">Bringing Data From API</span></title>
+    <style>
+        button {
+            background-color: #6a4caf;
+            border: none;
+            color: rgb(255, 255, 255);
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+   
+    <script>
+        function insertjoke() {
+            fetch('https://api.chucknorris.io/jokes/random?category=food')
+            .then(response=>response.json())
+            .then(json => document.getElementById("chucks").innerHTML=json.value)
+            .catch(error => console.log('unable to reach URL'+error));
+        }
+    </script>
+  
+    <h1>Have Some Fun</h1>
+
+    <label for="chucks" style="cursor: pointer;" onclick="insertjoke()">What's chuck doing today?</label>
+    <p id="chucks"></p>
+    <button onclick ="insertjoke()">Next </button>
+</body>
+</html>
